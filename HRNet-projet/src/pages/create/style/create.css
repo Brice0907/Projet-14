@@ -37,6 +37,8 @@
     height: 25px;
     border-radius: 5px;
     border: 1px solid black;
+    padding: 0px 5px;
+    width: 100%;
 }
 
 .create_bloc_form_field {
@@ -48,9 +50,10 @@
 }
 
 .create_bloc_form_field_input {
-    height: 20px;
+    height: 22px;
     margin-bottom: 5px;
     border-radius: 5px;
+    padding: 0px 5px;
     border: 1px solid black;
 }
 

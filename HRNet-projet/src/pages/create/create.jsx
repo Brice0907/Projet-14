@@ -1,7 +1,24 @@
 import './style/create.css';
 import CreateNav from '../../components/createNav/createNav';
+import BirthPicker from '../../components/birthPicker/birthPicker';
+import PickerDate from '../../components/datePicker/datePicker';
 
 export default function Create() {
+
+    function sending(e) {
+        e.preventDefault()
+        console.log('CLICK');
+        const firstName = document.getElementById('first-name');
+        const lastName = document.getElementById('last-name');
+        const dateOfBirth = document.getElementById('date-of-birth');
+        const startDate = document.getElementById('start-date');
+        const department = document.getElementById('department');
+        const street = document.getElementById('street');
+        const city = document.getElementById('city');
+        const state = document.getElementById('state');
+        const zipCode = document.getElementById('zip-code');
+    }
+
     return <div className='create'>
         <CreateNav />
         <div className='create_bloc'>
@@ -15,11 +32,9 @@ export default function Create() {
                 <label htmlFor="last-name" className='create_bloc_form_label label_margin'>Last Name</label>
                 <input type="text" id="last-name" className='create_bloc_form_input'></input>
 
-                <label htmlFor="date-of-birth" className='create_bloc_form_label label_margin'>Date of Birth</label>
-                <input id="date-of-birth" type="text" className='create_bloc_form_input'></input>
+                <BirthPicker />
 
-                <label htmlFor="start-date" className='create_bloc_form_label label_margin'>Start Date</label>
-                <input id="start-date" type="text" className='create_bloc_form_input'></input>
+                <PickerDate />
 
                 <fieldset className="address create_bloc_form_field">
                     <legend>Address</legend>
@@ -47,8 +62,7 @@ export default function Create() {
                 </select>
             </form>
 
-            <div className='create_bloc_button'>Save</div>
-
+            <div onClick={sending} className='create_bloc_button'>Save</div>
         </div>
     </div>
 }
