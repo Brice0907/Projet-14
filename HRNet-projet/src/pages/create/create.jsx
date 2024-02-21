@@ -1,22 +1,40 @@
 import './style/create.css';
+import data from '../../data/dataState.json'
 import CreateNav from '../../components/createNav/createNav';
 import BirthPicker from '../../components/birthPicker/birthPicker';
 import PickerDate from '../../components/datePicker/datePicker';
+import SelectDepartement from '../../components/selectDepartement/selectDepartement';
+import SelectState from '../../components/selectState/selectState';
 
 export default function Create() {
 
     function sending(e) {
         e.preventDefault()
-        console.log('CLICK');
-        const firstName = document.getElementById('first-name');
-        const lastName = document.getElementById('last-name');
-        const dateOfBirth = document.getElementById('date-of-birth');
-        const startDate = document.getElementById('start-date');
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const dateOfBirth = document.getElementById('date-of-birth').value;
+        const startDate = document.getElementById('start-date').value;
         const department = document.getElementById('department');
-        const street = document.getElementById('street');
-        const city = document.getElementById('city');
+        const street = document.getElementById('street').value;
+        const city = document.getElementById('city').value;
         const state = document.getElementById('state');
-        const zipCode = document.getElementById('zip-code');
+        const zipCode = document.getElementById('zip-code').value;
+
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        const employee = {
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            startDate: startDate,
+            department: department.children[3].value,
+            street: street,
+            city: city,
+            state: state.children[3].value,
+            zipCode: zipCode
+        };
+        employees.push(employee);
+        localStorage.setItem('employees', JSON.stringify(employees))
+
     }
 
     return <div className='create'>
@@ -45,21 +63,13 @@ export default function Create() {
                     <label htmlFor="city" className='create_bloc_form_label'>City</label>
                     <input id="city" type="text" className='create_bloc_form_field_input' />
 
-                    <label htmlFor="state" className='create_bloc_form_label'>State</label>
-                    <select name="state" id="state" className='create_bloc_form_field_input'></select>
+                    <SelectState option={data} />
 
                     <label htmlFor="zip-code" className='create_bloc_form_label'>Zip Code</label>
                     <input id="zip-code" type="number" className='create_bloc_form_field_input' />
                 </fieldset>
 
-                <label htmlFor="department" className='create_bloc_form_label label_margin'>Department</label>
-                <select name="department" id="department" className='create_bloc_form_input'>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
+                <SelectDepartement />
             </form>
 
             <div onClick={sending} className='create_bloc_button'>Save</div>
