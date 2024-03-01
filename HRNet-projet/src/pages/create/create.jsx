@@ -1,12 +1,16 @@
 import './style/create.css';
+import { useState } from 'react';
 import data from '../../data/dataState.json'
 import CreateNav from '../../components/createNav/createNav';
 import BirthPicker from '../../components/birthPicker/birthPicker';
 import PickerDate from '../../components/datePicker/datePicker';
 import SelectDepartement from '../../components/selectDepartement/selectDepartement';
 import SelectState from '../../components/selectState/selectState';
+import ModalForm from '../../components/modalForm/modalForm';
 
 export default function Create() {
+
+    const [modalOpen, setModalOpen] = useState(false)
 
     function sending(e) {
         e.preventDefault()
@@ -34,7 +38,7 @@ export default function Create() {
         };
         employees.push(employee);
         localStorage.setItem('employees', JSON.stringify(employees))
-
+        setModalOpen(true)
     }
 
     return <div className='create'>
@@ -74,5 +78,6 @@ export default function Create() {
 
             <div onClick={sending} className='create_bloc_button'>Save</div>
         </div>
+        <ModalForm isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} />
     </div>
 }

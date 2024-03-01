@@ -1,5 +1,7 @@
 .employeNav {
     text-align: center;
+    width: 90px;
+    margin: auto;
 }
 
 .employeNav_link {
@@ -9,7 +11,7 @@
 
 .employeNav_link_btn {
     margin: auto;
-    margin-top: 8px;
+    margin-top: 20px;
     width: 90px;
     padding: 15px 13px;
     background-color: #97ceff;
