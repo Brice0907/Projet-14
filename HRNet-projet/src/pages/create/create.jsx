@@ -26,15 +26,15 @@ export default function Create() {
 
         const employees = JSON.parse(localStorage.getItem('employees')) || [];
         const employee = {
-            firstName: firstName,
-            lastName: lastName,
-            dateOfBirth: dateOfBirth,
-            startDate: startDate,
-            department: department.children[3].value,
-            street: street,
-            city: city,
-            state: state.children[3].value,
-            zipCode: zipCode
+            'First Name': firstName,
+            'Last Name': lastName,
+            'Start Date': startDate,
+            'Department': department.children[3].value,
+            'Date Of Birth': dateOfBirth,
+            'Street': street,
+            'City': city,
+            'State': state.children[3].value,
+            'Zip Code': zipCode
         };
         employees.push(employee);
         localStorage.setItem('employees', JSON.stringify(employees))

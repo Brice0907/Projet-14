@@ -19,7 +19,7 @@ const customStyles = {
 export default function ModalForm({ isOpen, onRequestClose }) {
 
     return <>
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles} ariaHideApp={false}>
             <div className='modal_text'>Employee Created !</div>
         </Modal>
     </>
