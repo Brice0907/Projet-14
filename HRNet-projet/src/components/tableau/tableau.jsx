@@ -6,17 +6,27 @@ import { useState } from 'react';
 export default function Tableau({ content }) {
 
     const [tab, setTab] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const columns = Object.keys(content[0]);
-    const displayedContent = content.slice(0, tab);
+    const allPages = Math.ceil(content.length / tab)
+
+    const startIndex = (currentPage - 1) * tab;
+    const endIndex = startIndex + tab;
+
+    const currentContent = content.slice(startIndex, endIndex)
+
+    const columns = Object.keys(currentContent[0]);
+    const displayedContent = currentContent.slice(0, tab);
 
     function changeSelect(e) {
         const value = parseInt(e.target.value)
         setTab(value)
     }
 
-    function Next() {
-        console.log('next');
+    function changePage(pageNumber) {
+        if (pageNumber !== 0 && pageNumber !== allPages + 1) {
+            setCurrentPage(pageNumber)
+        }
     }
 
     return <>
@@ -53,10 +63,11 @@ export default function Tableau({ content }) {
         </table>
 
         <div className='show'>
-            <div>Showing  to  of {content.length} entries</div>
-            <div>
-                <div>Previous</div>
-                <div onClick={Next}>Next</div>
+            <div>Showing {startIndex} to {endIndex > content.length ? content.length : endIndex} of {content.length} entries</div>
+            <div className='show_page'>
+                <div className='show_page_prev' onClick={() => changePage(currentPage - 1)}>Previous</div>
+                <div>{currentPage}/{allPages}</div>
+                <div className='show_page_next' onClick={() => changePage(currentPage + 1)}>Next</div>
             </div>
         </div>
 
