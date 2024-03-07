@@ -7,16 +7,14 @@ export default function Tableau({ content }) {
 
     const [tab, setTab] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
 
     const allPages = Math.ceil(content.length / tab)
 
     const startIndex = (currentPage - 1) * tab;
     const endIndex = startIndex + tab;
 
-    const currentContent = content.slice(startIndex, endIndex)
 
-    const columns = Object.keys(currentContent[0]);
-    const displayedContent = currentContent.slice(0, tab);
 
     function changeSelect(e) {
         const value = parseInt(e.target.value)
@@ -29,23 +27,72 @@ export default function Tableau({ content }) {
         }
     }
 
+    // const search = document.querySelector('.search');
+    // console.log(content);
+    // search.addEventListener('input', function Filter(e) {
+    //     let stringInput = e.target.value.toLowerCase();
+    //     FilterTab(stringInput)
+    // })
+
+    // function FilterTab(str) {
+    //     let found = false;
+
+    //     content.forEach(element => {
+    //         console.log(element);
+    //     });
+    // }
+
+    // Function de tri
+    function ColumnTri(key) {
+        let direction = 'ascending';
+        if (sortConfig.key === key || sortConfig.direction === 'ascending') {
+            direction = 'descending';
+        }
+        setSortConfig({ key, direction });
+    }
+
+    // Trier les données
+    if (sortConfig.key) {
+        content.sort((a, b) => {
+            if (a[sortConfig.key.content] < b[sortConfig.key.content]) {
+                console.log(1);
+                return sortConfig.direction === 'ascending' ? 1 : -1;
+            }
+            if (a[sortConfig.key.content] > b[sortConfig.key.content]) {
+                console.log(2);
+                return sortConfig.direction === 'ascending' ? -1 : 1;
+            }
+            console.log(3);
+            return 0;
+        });
+    }
+
+    let currentContent = content.slice(startIndex, endIndex)
+
+    let columns = Object.keys(currentContent[0]);
+    let displayedContent = currentContent.slice(0, tab);
+
     return <>
-        <div className='entries'>
-            Show
-            <select name="entries" id="entries" className='entries_select' onChange={changeSelect}>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-            entries
+        <div className='show'>
+            <div>
+                Show
+                <select name="entries" id="entries" className='show_select' onChange={changeSelect}>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                entries
+            </div>
+
+            <input className='search' type="search" placeholder='Search' />
         </div>
 
         <table className='list'>
             <thead>
                 <tr>
                     {columns.map((content, index) => (
-                        <th key={index} className='list_thead'>{content}</th>
+                        <th key={index} onClick={() => ColumnTri({ content })} className='list_thead'>{content}</th>
                     ))}
                 </tr>
             </thead>

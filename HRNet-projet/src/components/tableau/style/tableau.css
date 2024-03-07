@@ -1,10 +1,12 @@
-.entries {
+.show {
     margin: auto;
     width: 890px;
-    margin-top: 40px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.entries_select {
+.show_select {
     margin: 0px 5px;
 }
 
@@ -32,24 +34,17 @@
     border-top: 1px solid rgb(136, 200, 255);
 }
 
-.show {
-    margin: auto;
-    width: 890px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
 
 .show_page {
     display: flex;
 }
 
 .show_page_prev {
-    margin-right: 7px;
+    margin-right: 8px;
     cursor: pointer;
 }
 
 .show_page_next {
-    margin-left: 7px;
+    margin-left: 8px;
     cursor: pointer;
 }
