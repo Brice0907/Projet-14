@@ -55,14 +55,11 @@ export default function Tableau({ content }) {
     if (sortConfig.key) {
         content.sort((a, b) => {
             if (a[sortConfig.key.content] < b[sortConfig.key.content]) {
-                console.log(1);
                 return sortConfig.direction === 'ascending' ? 1 : -1;
             }
             if (a[sortConfig.key.content] > b[sortConfig.key.content]) {
-                console.log(2);
                 return sortConfig.direction === 'ascending' ? -1 : 1;
             }
-            console.log(3);
             return 0;
         });
     }
