@@ -7,11 +7,11 @@ import PickerDate from '../../components/datePicker/datePicker';
 import SelectDepartement from '../../components/selectDepartement/selectDepartement';
 import SelectState from '../../components/selectState/selectState';
 import ModalForm from '../../components/modalForm/modalForm';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 export default function Create() {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false)
 
     function sending(e) {
@@ -26,7 +26,7 @@ export default function Create() {
         const state = document.getElementById('state');
         const zipCode = document.getElementById('zip-code').value;
 
-        // const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
         const employee = {
             'First Name': firstName,
             'Last Name': lastName,
@@ -38,9 +38,9 @@ export default function Create() {
             'State': state.children[3].value,
             'Zip Code': zipCode
         };
-        // employees.push(employee);
-        // localStorage.setItem('employees', JSON.stringify(employees))
-        dispatch({ type: 'ADD', payload: [employee] })
+        employees.push(employee);
+        localStorage.setItem('employees', JSON.stringify(employees))
+        // dispatch({ type: 'ADD', payload: [employee] })
         setModalOpen(true)
     }
 
