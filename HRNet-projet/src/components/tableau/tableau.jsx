@@ -3,9 +3,9 @@ import './style/tableau.css'
 import { useState } from 'react';
 
 // PASSER LE TOUT EN LIBRAIRI INSTALABLE AVEC NPM (AUTRE PROJET JUSTE POUR SE COMPOSANT)
-export default function Tableau({ content, entries }) {
+export default function Tableau({ content, entries, showing, backColor, lineColor, buttonColor, sizeH, sizeW }) {
 
-    const [tab, setTab] = useState(10);
+    const [tab, setTab] = useState(parseInt(entries[0]));
     const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
     const [searchTerm, setSearchTerm] = useState('');
@@ -98,7 +98,7 @@ export default function Tableau({ content, entries }) {
     }
 
     return <>
-        <div className='show'>
+        <div className='show' style={{ width: sizeW }}>
             <div>
                 Show
                 <select name="entries" id="entries" className='show_select' onChange={changeSelect}>
@@ -111,7 +111,7 @@ export default function Tableau({ content, entries }) {
             <input className='search' type="search" placeholder='Search' onChange={handleChange} />
         </div>
 
-        <table className='list'>
+        <table className='list' style={{ width: sizeW, height: sizeH }}>
             {filteredContent.length === 0 ? <div>La recherche n&apos;a donné aucun résultat correspondant à votre requête.</div> : null}
             <thead>
                 <tr>
@@ -124,7 +124,7 @@ export default function Tableau({ content, entries }) {
                 {displayedContent.map((row, rowIndex) => (
                     <tr key={rowIndex}>
                         {columns.map((content, index) => (
-                            <td key={index} className={rowIndex !== 0 ? 'list_tbody list_line' : 'list_tbody'}>
+                            <td key={index} className={rowIndex !== 0 ? 'list_tbody list_line' : 'list_tbody'} style={{ backgroundColor: backColor, borderColor: lineColor }}>
                                 {row[content]}
                             </td>
                         ))}
@@ -133,15 +133,15 @@ export default function Tableau({ content, entries }) {
             </tbody>
         </table>
 
-        {filteredContent.length === 0 ? null : <div className='show'>
-            <div>
+        {filteredContent.length === 0 ? null : <div style={{ width: sizeW }} className={showing === 'false' ? 'show center' : 'show'}>
+            {showing === 'false' ? null : <div>
                 Showing {startIndex + 1} to {filteredContent.length < content.length ?
                     endIndex > filteredContent.length ? filteredContent.length : endIndex : endIndex > content.length ? content.length : endIndex} of {filteredContent.length < content.length ? filteredContent.length : content.length} entries
-            </div>
+            </div>}
             <div className='show_page'>
-                <div className='show_page_prev' onClick={() => changePage(currentPage - 1)}>Previous</div>
-                <div>{currentPage}/{allPages}</div>
-                <div className='show_page_next' onClick={() => changePage(currentPage + 1)}>Next</div>
+                <div style={{ backgroundColor: buttonColor }} className='show_page_prev show_page_button' onClick={() => changePage(currentPage - 1)}>Previous</div>
+                <div className='show_page_text'>{currentPage}/{allPages}</div>
+                <div style={{ backgroundColor: buttonColor }} className='show_page_next show_page_button' onClick={() => changePage(currentPage + 1)}>Next</div>
             </div>
         </div>}
     </>

@@ -1,6 +1,5 @@
 .show {
     margin: auto;
-    width: 890px;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -12,7 +11,6 @@
 
 .list {
     margin: auto;
-    width: 890px;
     text-align: center;
     margin-top: 10px;
     font-size: 16.5px;
@@ -27,29 +25,44 @@
 }
 
 .list_thead:hover {
-    background-color: rgb(225, 243, 255)
+    background-color: rgb(226, 226, 226);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .list_tbody {
-    background-color: aliceblue;
     height: 35px;
 }
 
 .list_line {
-    border-top: 1px solid rgb(136, 200, 255);
+    border-top: 1px solid;
 }
 
 
 .show_page {
     display: flex;
+    font-size: 17px;
+}
+
+.show_page_button {
+    cursor: pointer;
+    padding: 5px 7px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px -3px black;
 }
 
 .show_page_prev {
     margin-right: 8px;
-    cursor: pointer;
 }
 
 .show_page_next {
     margin-left: 8px;
-    cursor: pointer;
+}
+
+.show_page_text {
+    padding: 5px 3px;
+}
+
+.center {
+    justify-content: center;
 }

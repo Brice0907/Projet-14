@@ -15,7 +15,15 @@ export default function List() {
         {employees === null ?
             (<div className='text_tab'>Veuillez ajouter un tableau d&apos;objet au composant Tableau</div>)
             :
-            (<Tableau content={employees} entries={entrie} />)
+            (<Tableau content={employees}
+                entries={entrie}
+                showing='true'
+                backColor='rgb(240, 248, 255)'
+                lineColor='rgb(136, 200, 255)'
+                buttonColor='rgb(136, 200, 255)'
+                sizeW='990px'
+                sizeH='500px'
+            />)
         }
     </>
 }
