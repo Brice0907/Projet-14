@@ -1,7 +1,9 @@
 import './style/list.css'
 import EmployeNav from '../../components/employeNav/employeNav'
-import Tableau from '../../components/tableau/tableau';
 // import { useSelector } from 'react-redux';
+import Tableau from 'my-custom-react-table';
+import '../../../node_modules/my-custom-react-table/dist/style.css'
+// import Tableau from '../../components/testtab.jsx';
 
 export default function List() {
 
@@ -11,19 +13,9 @@ export default function List() {
 
     return <>
         <EmployeNav />
-
-        {employees === null ?
-            (<div className='text_tab'>Veuillez ajouter un tableau d&apos;objet au composant Tableau</div>)
+        {employees === null ? (<div className='text_tab'>Veuillez ajouter un tableau d&apos;objet au composant Tableau</div>)
             :
-            (<Tableau content={employees}
-                entries={entrie}
-                showing='true'
-                backColor='rgb(240, 248, 255)'
-                lineColor='rgb(136, 200, 255)'
-                buttonColor='rgb(136, 200, 255)'
-                sizeW='990px'
-                sizeH='500px'
-            />)
+            (<Tableau content={employees} entries={entrie} showing={true} backColor='rgb(240, 248, 255)' lineColor='rgb(136, 200, 255)' buttonColor='rgb(136, 200, 255)' sizeW='990px' sizeH='100%' />)
         }
     </>
 }
