@@ -3,7 +3,6 @@ import EmployeNav from '../../components/employeNav/employeNav'
 // import { useSelector } from 'react-redux';
 import Tableau from 'my-custom-react-table';
 import '../../../node_modules/my-custom-react-table/dist/style.css'
-// import Tableau from '../../components/testtab.jsx';
 
 export default function List() {
 
