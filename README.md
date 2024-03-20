@@ -24,6 +24,9 @@ https://my-custom-react-table.netlify.app/
 - Effectuer des tests de performance Lighthouse
 - Ajouter un système de gestion d'état
 
+Composant React effectué : 
+https://www.npmjs.com/package/my-custom-react-table
+
 # Compétence évaluées
 
 - Analyser la performance d'une application web
