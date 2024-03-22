@@ -7,11 +7,11 @@ https://my-custom-react-table.netlify.app/
 # Installation
 
 1. Cloner le repository :
-   `git clone https://github.com/Brice0907/Projet-14`
+   - `git clone https://github.com/Brice0907/Projet-14`
 2. Installation des dépendances :
-   `npm install`
+   - `npm install`
 3. Lancer le Front :
-   `npm run dev`
+   - `npm run dev`
 
 # Description
 
